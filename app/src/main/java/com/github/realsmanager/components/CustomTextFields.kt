@@ -35,7 +35,9 @@ fun COutlinedTextField(
     onValueChange: (String) -> Unit,
     focusedBorderColor: Color = colorPrimary,
     focusedLabelColor: Color = colorPrimary,
-    cursorColor: Color = colorPrimary
+    cursorColor: Color = colorPrimary,
+    isError: Boolean = false,
+    keyboardType: KeyboardType = KeyboardType.Text
 ){
     OutlinedTextField(
         modifier = modifier,
@@ -59,7 +61,8 @@ fun COutlinedTextField(
                     )
                 }
             }
-        }
+        },
+        isError = isError
     )
 }
 
@@ -72,7 +75,8 @@ fun CPasswordOutlinedField(
     onValueChange: (String) -> Unit,
     focusedBorderColor: Color = colorPrimary,
     focusedLabelColor: Color = colorPrimary,
-    cursorColor: Color = colorPrimary
+    cursorColor: Color = colorPrimary,
+    isError: Boolean = false
 ){
     var isPasswordVisible by remember {
         mutableStateOf(false)
@@ -102,6 +106,7 @@ fun CPasswordOutlinedField(
                     contentDescription = "Password visibility toggle"
                 )
             }
-        }
+        },
+        isError = isError
     )
 }

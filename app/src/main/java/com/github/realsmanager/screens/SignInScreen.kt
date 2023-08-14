@@ -1,5 +1,6 @@
-package com.github.realsmanager
+package com.github.realsmanager.screens
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +23,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,39 +33,45 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.github.realsmanager.R
 import com.github.realsmanager.components.COutlinedTextField
 import com.github.realsmanager.components.CPasswordOutlinedField
+import com.github.realsmanager.models.UserFormEvent
+import com.github.realsmanager.models.UserViewModel
 import com.github.realsmanager.ui.theme.MainColor
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignInScreen() {
-    var email by remember {
-        mutableStateOf("")
-    }
-    var name by remember {
-        mutableStateOf("")
-    }
-    var password by remember {
-        mutableStateOf("")
-    }
-    var confirmedPassword by remember {
-        mutableStateOf("")
-    }
     var isSignUp by remember {
         mutableStateOf(false)
     }
-    val isFormValid by remember {
-        derivedStateOf {
-            name.isNotBlank() && password.length >= 7
+    val userViewModel = viewModel<UserViewModel>()
+    val userState = userViewModel.state
+    val context = LocalContext.current
+    LaunchedEffect(key1 = context) {
+        userViewModel.validationEvents.collect { event ->
+            when (event) {
+                is UserViewModel.ValidationEvent.Success -> {
+                    Toast.makeText(
+                        context,
+                        "Registration successful",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
         }
     }
+
     Scaffold(
         content = { paddingValues ->
             Column(
@@ -110,43 +117,77 @@ fun SignInScreen() {
                         if (isSignUp) {
                             COutlinedTextField(
                                 label = "email",
-                                value = email,
+                                value = userState.email,
                                 onValueChange = {
-                                    email = it
-                                }
+                                    userViewModel.onEvent(UserFormEvent.EmailChanged(it))
+                                },
+                                isError = userState.emailError != null,
+                                keyboardType = KeyboardType.Email
                             )
+                            if (userState.emailError != null) {
+                                Text(
+                                    text = userState.emailError,
+                                    color = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.align(Alignment.End)
+                                )
+                            }
                             Spacer(modifier = Modifier.height(8.dp))
                         }
                         COutlinedTextField(
                             label = "name",
-                            value = name,
+                            value = userState.name,
                             onValueChange = {
-                                name = it
-                            }
+                                userViewModel.onEvent(UserFormEvent.NameChanged(it))
+                            },
+                            isError = userState.nameError != null
                         )
+                        if (userState.nameError != null) {
+                            Text(
+                                text = userState.nameError,
+                                color = MaterialTheme.colorScheme.error,
+                                modifier = Modifier.align(Alignment.End)
+                            )
+                        }
                         Spacer(modifier = Modifier.height(8.dp))
                         CPasswordOutlinedField(
                             label = "password",
-                            value = password,
+                            value = userState.password,
                             onValueChange = {
-                                password = it
-                            }
+                                userViewModel.onEvent(UserFormEvent.PasswordChanged(it))
+                            },
+                            isError = userState.passwordError != null
                         )
+                        if (userState.passwordError != null) {
+                            Text(
+                                text = userState.passwordError,
+                                color = MaterialTheme.colorScheme.error,
+                                modifier = Modifier.align(Alignment.End)
+                            )
+                        }
                         if (isSignUp) {
                             Spacer(modifier = Modifier.height(8.dp))
                             CPasswordOutlinedField(
                                 label = "confirm password",
-                                value = confirmedPassword,
+                                value = userState.confirmPassword,
                                 onValueChange = {
-                                    confirmedPassword = it
-                                }
+                                    userViewModel.onEvent(UserFormEvent.ConfirmPasswordChanged(it))
+                                },
+                                isError = userState.confirmPasswordError != null
                             )
+                            if (userState.confirmPasswordError != null) {
+                                Text(
+                                    text = userState.confirmPasswordError,
+                                    color = MaterialTheme.colorScheme.error,
+                                    modifier = Modifier.align(Alignment.End)
+                                )
+                            }
                         }
 
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
-                            onClick = {},
-                            enabled = isFormValid,
+                            onClick = {
+                                userViewModel.onEvent(UserFormEvent.Submit)
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clip(shape = RoundedCornerShape(16.dp)),
@@ -167,7 +208,7 @@ fun SignInScreen() {
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             TextButton(onClick = {
-                                 isSignUp  = !isSignUp
+                                isSignUp = !isSignUp
                             }) {
                                 Text(text = "Sign Up", fontSize = 16.sp)
                             }
