@@ -6,5 +6,6 @@ sealed class UserFormEvent {
     data class ConfirmPasswordChanged(val confirmPassword: String) : UserFormEvent()
     data class NameChanged(val name: String) : UserFormEvent()
 
-    object Submit : UserFormEvent()
+    object SignInSubmit : UserFormEvent()
+    object SignUpSubmit : UserFormEvent()
 }

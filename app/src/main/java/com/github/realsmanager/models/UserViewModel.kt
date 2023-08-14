@@ -26,33 +26,60 @@ class UserViewModel(
     fun onEvent(event: UserFormEvent) {
         when (event) {
             is UserFormEvent.EmailChanged -> {
-                state.copy(email = event.email)
+                state = state.copy(email = event.email)
             }
 
             is UserFormEvent.PasswordChanged -> {
-                state.copy(password = event.password)
+                state = state.copy(password = event.password)
             }
 
             is UserFormEvent.ConfirmPasswordChanged -> {
-                state.copy(confirmPassword = event.confirmPassword)
+                state = state.copy(confirmPassword = event.confirmPassword)
             }
 
             is UserFormEvent.NameChanged -> {
-                state.copy(name = event.name)
+                state = state.copy(name = event.name)
             }
 
-            is UserFormEvent.Submit -> {
-                submitData()
+            is UserFormEvent.SignInSubmit -> {
+                submitSignInData()
             }
+
+            is UserFormEvent.SignUpSubmit -> {
+                submitSignUpData()
+            }
+
         }
     }
 
-    private fun submitData() {
+    private fun submitSignInData() {
+        val nameResult = validateName.execute(state.name)
+        val passwordResult = validatePassword.execute(state.password)
+
+        val hasError = listOf(
+            nameResult,
+            passwordResult
+        ).any { !it.successful }
+
+        if (hasError) {
+            state = state.copy(
+                nameError = nameResult.errorMessage,
+                passwordError = passwordResult.errorMessage
+            )
+            return
+        }
+        viewModelScope.launch {
+            validationEventChannel.send(ValidationEvent.Success)
+        }
+    }
+
+    private fun submitSignUpData() {
         val emailResult = validateEmail.execute(state.email)
         val passwordResult = validatePassword.execute(state.password)
         val confirmPasswordResult =
             validateConfirmPassword.execute(state.password, state.confirmPassword)
         val nameResult = validateName.execute(state.name)
+
         val hasError = listOf(
             emailResult,
             passwordResult,
@@ -69,6 +96,7 @@ class UserViewModel(
             )
             return
         }
+
         viewModelScope.launch {
             validationEventChannel.send(ValidationEvent.Success)
         }

@@ -64,7 +64,7 @@ fun SignInScreen() {
                 is UserViewModel.ValidationEvent.Success -> {
                     Toast.makeText(
                         context,
-                        "Registration successful",
+                        if(isSignUp)"Registration successful" else "Login Successful",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -186,7 +186,11 @@ fun SignInScreen() {
                         Spacer(modifier = Modifier.height(16.dp))
                         Button(
                             onClick = {
-                                userViewModel.onEvent(UserFormEvent.Submit)
+                                if(isSignUp){
+                                    userViewModel.onEvent(UserFormEvent.SignUpSubmit)
+                                }else{
+                                    userViewModel.onEvent(UserFormEvent.SignInSubmit)
+                                }
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
