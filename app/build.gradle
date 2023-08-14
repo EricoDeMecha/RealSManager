@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -66,4 +67,8 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
     // material icons extended
     implementation 'androidx.compose.material:material-icons-extended:1.4.3'
+
+    // hilt
+    implementation 'com.google.dagger:hilt-android:2.47'
+    annotationProcessor 'com.google.dagger:hilt-compiler:2.47'
 }
