@@ -47,6 +47,7 @@ import com.github.realsmanager.components.CPasswordOutlinedField
 import com.github.realsmanager.models.UserFormEvent
 import com.github.realsmanager.models.UserViewModel
 import com.github.realsmanager.ui.theme.MainColor
+import com.github.realsmanager.ui.theme.largeRadialGradient
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -78,7 +79,7 @@ fun SignInScreen() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(paddingValues)
-                    .background(MainColor),
+                    .background(largeRadialGradient),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Top
             ) {
@@ -96,9 +97,9 @@ fun SignInScreen() {
                         .fillMaxWidth()
                         .padding(8.dp),
                     shape = RoundedCornerShape(32.dp),
-                    colors = CardDefaults.cardColors(
+                   /* colors = CardDefaults.cardColors(
                         containerColor = Color.White,
-                    ),
+                    ),*/
                 ) {
                     Column(
                         modifier = Modifier
@@ -111,7 +112,7 @@ fun SignInScreen() {
                             modifier = Modifier.fillMaxWidth(),
                             text = if (isSignUp) "Sign Up!" else "Welcome Back!",
                             fontWeight = FontWeight.Bold,
-                            fontSize = 32.sp
+                            fontSize = 24.sp
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         if (isSignUp) {
