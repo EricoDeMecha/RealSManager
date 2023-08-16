@@ -1,4 +1,4 @@
-package com.github.realsmanager.models
+package com.github.realsmanager.models.user
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

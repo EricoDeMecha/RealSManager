@@ -1,10 +1,13 @@
 package com.github.realsmanager.screens.tabscreens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,15 +22,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.realsmanager.R
 
 @Composable
@@ -55,50 +62,8 @@ fun TabsDataLoader(
         }
     )
 }
-
-@Composable
-fun BuildingCard(
-    modifier: Modifier = Modifier
-) {
-    val isSelected by remember {
-        mutableStateOf(false)
-    }
-    Card(
-        modifier = modifier
-            .fillMaxWidth()
-            .height(210.dp)
-            .padding(10.dp),
-        shape = RoundedCornerShape(8.dp),
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 10.dp
-        ),
-        colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        )
-    ) {
-        Text(
-            text = "Building 1"
-        )
-        Image(
-            painter = painterResource(id = R.drawable.kmm),
-            contentDescription = null
-        )
-        Row{
-            Column {
-                Text(text = "2")
-                Text(text = "Workers")
-            }
-            Column {
-                Text(text = "24")
-                Text(text = "Tenants")
-            }
-        }
-    }
-
-}
-
 @Preview
 @Composable
 fun BuildingCardPreview() {
-    BuildingCard()
+
 }

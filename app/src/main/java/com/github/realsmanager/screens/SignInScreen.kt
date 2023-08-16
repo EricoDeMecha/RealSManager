@@ -43,9 +43,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.github.realsmanager.R
 import com.github.realsmanager.components.COutlinedTextField
 import com.github.realsmanager.components.CPasswordOutlinedField
-import com.github.realsmanager.models.UserFormEvent
-import com.github.realsmanager.models.UserViewModel
-import com.github.realsmanager.ui.theme.MainColor
+import com.github.realsmanager.models.user.UserFormEvent
+import com.github.realsmanager.models.user.UserViewModel
 import com.github.realsmanager.ui.theme.largeRadialGradient
 
 

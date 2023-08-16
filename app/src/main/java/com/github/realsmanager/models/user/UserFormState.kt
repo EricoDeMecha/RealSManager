@@ -1,4 +1,4 @@
-package com.github.realsmanager.models
+package com.github.realsmanager.models.user
 
 data class UserFormState(
     val email: String = "",

@@ -61,16 +61,16 @@ fun LandingPage() {
     }
     val homeTabModels = listOf(
         HomeTabModel(
-            icon = painterResource(id = R.drawable.baseline_add_home_24),
-            title = "Home"
+            icon = painterResource(id = R.drawable.baseline_house_24),
+            title = "Buildings"
         ),
         HomeTabModel(
-            icon = painterResource(id = R.drawable.baseline_add_home_24),
-            title = "Home"
+            icon = painterResource(id = R.drawable.baseline_engineering_24),
+            title = "Workers"
         ),
         HomeTabModel(
-            icon = painterResource(id = R.drawable.baseline_add_home_24),
-            title = "Home"
+            icon = painterResource(id = R.drawable.baseline_people_24),
+            title = "Tenants"
         )
     )
 

@@ -1,4 +1,4 @@
-package com.github.realsmanager.models
+package com.github.realsmanager.models.user
 
 sealed class UserFormEvent {
     data class EmailChanged(val email: String) : UserFormEvent()
