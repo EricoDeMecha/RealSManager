@@ -59,6 +59,21 @@ fun LandingPage() {
     var selectedTabIndex by remember  {
         mutableStateOf(0)
     }
+    val homeTabModels = listOf(
+        HomeTabModel(
+            icon = painterResource(id = R.drawable.baseline_add_home_24),
+            title = "Home"
+        ),
+        HomeTabModel(
+            icon = painterResource(id = R.drawable.baseline_add_home_24),
+            title = "Home"
+        ),
+        HomeTabModel(
+            icon = painterResource(id = R.drawable.baseline_add_home_24),
+            title = "Home"
+        )
+    )
+
     Scaffold {
         Column(modifier = Modifier.fillMaxSize()) {
             //search bar
@@ -118,20 +133,7 @@ fun LandingPage() {
             )
             Spacer(Modifier.height(10.dp))
             HomeTabs(
-                homeTabModels = listOf(
-                    HomeTabModel(
-                        icon = painterResource(id = R.drawable.baseline_add_home_24),
-                        title = "Home"
-                    ),
-                    HomeTabModel(
-                        icon = painterResource(id = R.drawable.baseline_add_home_24),
-                        title = "Home"
-                    ),
-                    HomeTabModel(
-                        icon = painterResource(id = R.drawable.baseline_add_home_24),
-                        title = "Home"
-                    )
-                ),
+                homeTabModels = homeTabModels,
                 onTabSelected = {
                     selectedTabIndex = it
                 }
