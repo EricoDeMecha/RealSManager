@@ -147,7 +147,7 @@ fun LandingPage() {
                     buildings = listOf(
                         BuildingModel(
                             "Building 1",
-                            painterResource(id = R.drawable.kmm),
+                            painterResource(id = R.drawable.building1),
                             300,
                             300,
                             30,
@@ -155,7 +155,7 @@ fun LandingPage() {
                         ),
                         BuildingModel(
                             "Building 2",
-                            painterResource(id = R.drawable.learn_coding_fast),
+                            painterResource(id = R.drawable.building2),
                             600,
                             300,
                             26,
@@ -163,7 +163,7 @@ fun LandingPage() {
                         ),
                         BuildingModel(
                             "Building 3",
-                            painterResource(id = R.drawable.multiple_languages),
+                            painterResource(id = R.drawable.building3),
                             700,
                             300,
                             24,
@@ -171,7 +171,7 @@ fun LandingPage() {
                         ),
                         BuildingModel(
                             "Building 4",
-                            painterResource(id = R.drawable.multiple_languages),
+                            painterResource(id = R.drawable.building5),
                             700,
                             300,
                             24,
@@ -185,13 +185,13 @@ fun LandingPage() {
 
                 1 -> WorkersScreen(
                     images = listOf(
-                        painterResource(id = R.drawable.kmm),
-                        painterResource(id = R.drawable.multiple_languages),
-                        painterResource(id = R.drawable.intermediate_dev),
-                        painterResource(id = R.drawable.master_logical_thinking),
-                        painterResource(id = R.drawable.kmm),
-                        painterResource(id = R.drawable.kmm),
-                        painterResource(id = R.drawable.kmm),
+                        painterResource(id = R.drawable.worker1),
+                        painterResource(id = R.drawable.worker2),
+                        painterResource(id = R.drawable.worker4),
+                        painterResource(id = R.drawable.worker1),
+                        painterResource(id = R.drawable.worker2),
+                        painterResource(id = R.drawable.worker1),
+                        painterResource(id = R.drawable.worker2),
                     ),
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -199,7 +199,7 @@ fun LandingPage() {
                 2 -> TenantsScreen(
                     tenants = listOf(
                         TenantModel(
-                            profilePhoto = R.drawable.kmm,
+                            profilePhoto = R.drawable.user1,
                             buildingName = "Divine Mercy",
                             roomNo = "F12",
                             age = 20,
@@ -207,7 +207,7 @@ fun LandingPage() {
                             sex = "F"
                         ),
                         TenantModel(
-                            profilePhoto = R.drawable.learn_coding_fast,
+                            profilePhoto = R.drawable.user2,
                             buildingName = "Divine Mercy",
                             roomNo = "F12",
                             age = 20,
@@ -215,7 +215,7 @@ fun LandingPage() {
                             sex = "F"
                         ),
                         TenantModel(
-                            profilePhoto = R.drawable.multiple_languages,
+                            profilePhoto = R.drawable.user3,
                             buildingName = "Divine Mercy",
                             roomNo = "F12",
                             age = 20,
@@ -223,7 +223,7 @@ fun LandingPage() {
                             sex = "F"
                         ),
                         TenantModel(
-                            profilePhoto = R.drawable.intermediate_dev,
+                            profilePhoto = R.drawable.user4,
                             buildingName = "Divine Mercy",
                             roomNo = "F12",
                             age = 20,

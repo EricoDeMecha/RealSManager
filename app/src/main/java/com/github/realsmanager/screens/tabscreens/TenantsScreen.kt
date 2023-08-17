@@ -157,7 +157,7 @@ data class TenantModel(
 @Composable
 fun TenantsScreenPreview() {
     val tenantModel = TenantModel(
-        profilePhoto = R.drawable.kmm,
+        profilePhoto = R.drawable.user4,
         buildingName = "Divine Mercy",
         roomNo = "F12",
         age = 20,

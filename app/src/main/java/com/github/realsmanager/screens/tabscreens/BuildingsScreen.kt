@@ -180,7 +180,7 @@ data class BuildingModel(
 fun BuildingsScreenPreview() {
     val buildingModel = BuildingModel(
         "Building1",
-        painterResource(id = R.drawable.multiple_languages),
+        painterResource(id = R.drawable.building5),
         600,
         300,
         24,
