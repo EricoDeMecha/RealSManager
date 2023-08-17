@@ -57,15 +57,15 @@ fun BuildingCard(
 ) {
     Card(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(all = 2.dp)
+            .clickable {  },
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
         )
     ) {
         Row(
-            modifier = Modifier
-                .clickable { },
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column(

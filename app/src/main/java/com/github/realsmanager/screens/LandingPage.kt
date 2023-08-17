@@ -168,6 +168,14 @@ fun LandingPage() {
                             300,
                             24,
                             300
+                        ),
+                        BuildingModel(
+                            "Building 4",
+                            painterResource(id = R.drawable.multiple_languages),
+                            700,
+                            300,
+                            24,
+                            300
                         )
                     ),
                     modifier = Modifier
