@@ -40,7 +40,7 @@ fun BuildingsScreen(
 ) {
     LazyVerticalGrid(
         modifier = modifier.scale(1.01f),
-        columns = GridCells.Fixed(2),
+        columns = GridCells.Adaptive(400.dp),
         content = {
             items(buildings.size) {
                 BuildingCard(buildingModel = buildings[it])

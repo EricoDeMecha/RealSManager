@@ -41,7 +41,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.realsmanager.R
 import com.github.realsmanager.models.HomeTabModel
-import com.github.realsmanager.screens.tabscreens.TabsDataLoader
+import com.github.realsmanager.screens.tabscreens.BuildingModel
+import com.github.realsmanager.screens.tabscreens.BuildingsScreen
+import com.github.realsmanager.screens.tabscreens.TenantModel
+import com.github.realsmanager.screens.tabscreens.TenantsScreen
+import com.github.realsmanager.screens.tabscreens.WorkersScreen
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -56,7 +60,7 @@ fun LandingPage() {
     val searchItemList = remember {
         mutableListOf("")
     }
-    var selectedTabIndex by remember  {
+    var selectedTabIndex by remember {
         mutableStateOf(0)
     }
     val homeTabModels = listOf(
@@ -138,16 +142,90 @@ fun LandingPage() {
                     selectedTabIndex = it
                 }
             )
-            when(selectedTabIndex) {
-                0 -> TabsDataLoader(
+            when (selectedTabIndex) {
+                0 -> BuildingsScreen(
+                    buildings = listOf(
+                        BuildingModel(
+                            "Building 1",
+                            painterResource(id = R.drawable.kmm),
+                            300,
+                            300,
+                            30,
+                            300
+                        ),
+                        BuildingModel(
+                            "Building 2",
+                            painterResource(id = R.drawable.learn_coding_fast),
+                            600,
+                            300,
+                            26,
+                            300
+                        ),
+                        BuildingModel(
+                            "Building 3",
+                            painterResource(id = R.drawable.multiple_languages),
+                            700,
+                            300,
+                            24,
+                            300
+                        )
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 5.dp)
+                )
+
+                1 -> WorkersScreen(
                     images = listOf(
-                        painterResource(id = R.drawable.intermediate_dev),
                         painterResource(id = R.drawable.kmm),
-                        painterResource(id = R.drawable.learn_coding_fast),
-                        painterResource(id = R.drawable.master_logical_thinking),
                         painterResource(id = R.drawable.multiple_languages),
+                        painterResource(id = R.drawable.intermediate_dev),
+                        painterResource(id = R.drawable.master_logical_thinking),
+                        painterResource(id = R.drawable.kmm),
+                        painterResource(id = R.drawable.kmm),
+                        painterResource(id = R.drawable.kmm),
                     ),
                     modifier = Modifier.fillMaxWidth()
+                )
+
+                2 -> TenantsScreen(
+                    tenants = listOf(
+                        TenantModel(
+                            profilePhoto = R.drawable.kmm,
+                            buildingName = "Divine Mercy",
+                            roomNo = "F12",
+                            age = 20,
+                            name = "P. Prometheus",
+                            sex = "F"
+                        ),
+                        TenantModel(
+                            profilePhoto = R.drawable.learn_coding_fast,
+                            buildingName = "Divine Mercy",
+                            roomNo = "F12",
+                            age = 20,
+                            name = "P. Prometheus",
+                            sex = "F"
+                        ),
+                        TenantModel(
+                            profilePhoto = R.drawable.multiple_languages,
+                            buildingName = "Divine Mercy",
+                            roomNo = "F12",
+                            age = 20,
+                            name = "P. Prometheus",
+                            sex = "F"
+                        ),
+                        TenantModel(
+                            profilePhoto = R.drawable.intermediate_dev,
+                            buildingName = "Divine Mercy",
+                            roomNo = "F12",
+                            age = 20,
+                            name = "P. Prometheus",
+                            sex = "F"
+                        )
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(all = 5.dp)
                 )
             }
         }
@@ -230,7 +308,7 @@ fun HomeTabs(
     modifier: Modifier = Modifier,
     homeTabModels: List<HomeTabModel>,
     onTabSelected: (selectedIndex: Int) -> Unit
-){
+) {
     var selectedTabIndex by remember {
         mutableStateOf(0)
     }
@@ -240,13 +318,13 @@ fun HomeTabs(
     TabRow(
         selectedTabIndex = selectedTabIndex,
         containerColor = Color.Transparent,
-        contentColor = Color.Black ,
+        contentColor = Color.Black,
         modifier = modifier
     ) {
         homeTabModels.forEachIndexed { index, item ->
             Tab(
                 selected = selectedTabIndex == index,
-                selectedContentColor =  Color.Black,
+                selectedContentColor = Color.Black,
                 unselectedContentColor = inactiveColor,
                 onClick = {
                     selectedTabIndex = index
