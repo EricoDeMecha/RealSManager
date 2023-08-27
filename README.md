@@ -8,3 +8,4 @@ A simple real estate management app using jetpack compose.
 - Create adding forms  for the three asset models.
 - Add a navigation icon to the search bar. 
 - Add a filter to the search bar.
+- Create custom cards for workers screen. 
