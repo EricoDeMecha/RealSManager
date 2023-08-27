@@ -1,6 +1,5 @@
 package com.github.realsmanager.screens.tabscreens
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,12 +23,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.github.realsmanager.R
 
 
@@ -59,7 +61,7 @@ fun BuildingCard(
         modifier = modifier
             .fillMaxWidth()
             .padding(all = 2.dp)
-            .clickable {  },
+            .clickable { },
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -155,10 +157,12 @@ fun BuildingCard(
                     .padding(all = 5.dp)
                     .size(width = 100.dp, height = 140.dp)
             ) {
-                Image(
-                    painter = buildingModel.painter,
-                    contentScale = ContentScale.Crop,
-                    contentDescription = buildingModel.name
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(buildingModel.image)
+                        .build(),
+                    contentDescription = buildingModel.name,
+                    contentScale = ContentScale.Crop
                 )
             }
 
@@ -168,7 +172,7 @@ fun BuildingCard(
 
 data class BuildingModel(
     val name: String,
-    val painter: Painter,
+    val image: Int = R.drawable.building1,
     val nCapacity: Int,
     val nOccupied: Int,
     val nWorkers: Int,
@@ -180,7 +184,7 @@ data class BuildingModel(
 fun BuildingsScreenPreview() {
     val buildingModel = BuildingModel(
         "Building1",
-        painterResource(id = R.drawable.building5),
+        R.drawable.building5,
         600,
         300,
         24,

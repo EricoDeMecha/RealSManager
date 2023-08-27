@@ -29,11 +29,14 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import com.github.realsmanager.R
 
 @Composable
@@ -61,7 +64,7 @@ fun TenantCard(
         modifier = modifier
             .fillMaxWidth()
             .padding(all = 2.dp)
-            .clickable {  },
+            .clickable { },
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 5.dp
@@ -78,8 +81,10 @@ fun TenantCard(
                     .size(width = 100.dp, height = 140.dp),
                 shape = RoundedCornerShape(16.dp)
             ) {
-                Image(
-                    painter = painterResource(id = tenantModel.profilePhoto),
+                AsyncImage(
+                    model = ImageRequest.Builder(LocalContext.current)
+                        .data(tenantModel.profilePhoto)
+                        .build(),
                     contentDescription = tenantModel.name,
                     contentScale = ContentScale.Crop
                 )

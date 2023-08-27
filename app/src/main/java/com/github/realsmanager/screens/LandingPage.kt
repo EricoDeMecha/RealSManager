@@ -186,7 +186,7 @@ fun LandingPage() {
                         buildings = listOf(
                             BuildingModel(
                                 "Building 1",
-                                painterResource(id = R.drawable.building1),
+                                R.drawable.building1,
                                 300,
                                 300,
                                 30,
@@ -194,7 +194,7 @@ fun LandingPage() {
                             ),
                             BuildingModel(
                                 "Building 2",
-                                painterResource(id = R.drawable.building2),
+                               R.drawable.building2,
                                 600,
                                 300,
                                 26,
@@ -202,7 +202,7 @@ fun LandingPage() {
                             ),
                             BuildingModel(
                                 "Building 3",
-                                painterResource(id = R.drawable.building3),
+                                R.drawable.building3,
                                 700,
                                 300,
                                 24,
@@ -210,7 +210,7 @@ fun LandingPage() {
                             ),
                             BuildingModel(
                                 "Building 4",
-                                painterResource(id = R.drawable.building5),
+                                R.drawable.building5,
                                 700,
                                 300,
                                 24,

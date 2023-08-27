@@ -74,4 +74,6 @@ dependencies {
     annotationProcessor 'com.google.dagger:hilt-compiler:2.47'*/
     // lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
+    //coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
 }
